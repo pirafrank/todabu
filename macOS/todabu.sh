@@ -17,26 +17,26 @@
 
 ###################################################################################
 
-# User's settings
-
-COMPUTER_NAME="rMBP"
-
-###################################################################################
-
 # Script header - Do NOT touch this!
 
-BACKUP_PATH="${HOME}/.todabu"
-
-if [[ ! -d $BACKUP_PATH ]]; then
-     mkdir -p $BACKUP_PATH
-     cd ${BACKUP_PATH}
-     git init
+if [[ ! -f $HOME/.config/todabu/config ]];then
+    /usr/bin/osascript -e 'display notification "Error: Configuration not found!." with title "todabu backup"'
+    exit 1
 else
-    cd ${BACKUP_PATH}
+    source $HOME/.config/todabu/config
 fi
 
-if [[ ! -d $COMPUTER_NAME ]]; then
-     mkdir -p $COMPUTER_NAME
+if [[ ! -d ${BACKUP_DIR} ]]; then
+     mkdir -p ${BACKUP_DIR}
+     cd ${BACKUP_DIR}
+     git init
+     git remote add origin $REMOTE
+else
+    cd ${BACKUP_DIR}
+fi
+
+if [[ ! -d ${COMPUTER_NAME} ]]; then
+     mkdir -p ${COMPUTER_NAME}
      cd ${COMPUTER_NAME}
 else
     cd ${COMPUTER_NAME}
@@ -143,7 +143,7 @@ rm ./"sublime-text-user-installed-packages/Package Control.system-ca-bundle"
 rm ./"sublime-text-user-installed-packages/Package Control.user-ca-bundle"
 
 sleep 1
-cd ${BACKUP_PATH}
+cd ${BACKUP_DIR}
 
 # commit
 git add .
@@ -151,4 +151,4 @@ git commit -m 'commit'
 git push origin master
 
 # notify backup complete
-/usr/bin/osascript -e 'display notification "Backup completed." with title "User Backup script"'
+/usr/bin/osascript -e 'display notification "Backup completed." with title "todabu backup"'
