@@ -148,7 +148,15 @@ cd ${BACKUP_DIR}
 # commit
 git add .
 git commit -m 'commit'
-git push origin master
 
-# notify backup complete
-/usr/bin/osascript -e 'display notification "Backup completed." with title "Todabu Backup"'
+# push to remote
+echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    git push origin master
+    sleep 1
+    /usr/bin/osascript -e 'display notification "Backup completed." with title "Todabu Backup"'
+else
+    /usr/bin/osascript -e 'display notification "Backup completed." with title "Todabu Backup"'
+    /usr/bin/osascript -e 'display notification "No connection: I will upload later..." with title "Todabu Backup"'
+    exit 1
+fi
