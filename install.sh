@@ -17,6 +17,7 @@ else
 fi
 
 # check kernel type
+echo ""
 echo "Detecting OS..."
 if [[ $(uname) == "Darwin" ]]; then
     echo "macOS detected"
@@ -31,13 +32,18 @@ else
 fi
 
 # curl proper main script for the platform
+echo ""
 echo "Fetching data..."
 mkdir /tmp/todabu
 curl -o /tmp/todabu/todabu -sS "https://raw.githubusercontent.com/pirafrank/todabu/master/macOS/todabu.sh"
 curl -o /tmp/todabu/com.fpira.todabu.plist -sS "https://raw.githubusercontent.com/pirafrank/todabu/master/macOS/com.fpira.todabu.plist"
 
+echo ""
 echo "Installing..."
 echo "Warning: Installed script will be overwritten!"
+echo ""
+echo "Now you'll be prompted for sudo password. Root needed to install in /usr/local/bin"
+sleep 1
 sudo cp /tmp/todabu/todabu /usr/local/bin/todabu
 sudo chmod +x /usr/local/bin/todabu
 sudo cp /tmp/todabu/com.fpira.todabu.plist $HOME/Library/LaunchAgents/com.fpira.todabu.plist
@@ -49,11 +55,13 @@ CONFIG_FILE="$HOME/.config/todabu/config"
 COMPUTER_NAME=""
 REMOTE=""
 
+echo ""
 echo "Starting setup..."
 
-mkdir -p '$HOME/.config/todabu'
-touch $HOME/.config/todabu/config
+mkdir -p "$HOME/.config/todabu"
+touch "$HOME/.config/todabu/config"
 
+echo ""
 echo -n "Insert choosen name for this computer and press [enter]: "
 read COMPUTER_NAME
 
@@ -75,5 +83,6 @@ echo "CONFIG_DIR=\"$HOME/.config/todabu\"" >> $CONFIG_FILE
 echo "COMPUTER_NAME=\"$COMPUTER_NAME\"" >> $CONFIG_FILE
 echo "REMOTE=\"$REMOTE\"" >> $CONFIG_FILE
 
+echo ""
 echo "Configuration saved"
 echo "Done. Script will run soon."

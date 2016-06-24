@@ -11,7 +11,7 @@ Linux version coming soon.
 ## Installation and setup
 
 1. Create an **empty** remote repository on your server of choice (github, bitbucket, gitlab, personal, ecc.)
-2. Run `\curl -sSL https://raw.githubusercontent.com/pirafrank/todabu/master/install.sh" | bash`
+2. Run `\curl -sSL "https://raw.githubusercontent.com/pirafrank/todabu/master/install.sh" | bash`
 3. Follow on-screen instructions
 
 ## How it works
@@ -28,7 +28,7 @@ This **will** delete everything: data, config, executeable and local repository 
 
 This will **not** delete your remote repository you configured during installation.
 
-`\curl -sSL https://raw.githubusercontent.com/pirafrank/todabu/master/uninstall.sh" | bash`
+`\curl -sSL "https://raw.githubusercontent.com/pirafrank/todabu/master/uninstall.sh" | bash`
 
 ## To-do list
 
