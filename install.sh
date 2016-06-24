@@ -12,7 +12,7 @@ echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     echo "Connection is ok..."
 else
-    echo -e >&2 "$(tput setaf 1)Error: No internet connection.$(tput sgr 0)\n" # red
+    echo -e >&2 "$(tput setaf 1)Error: Can't reach servers. Please check your connection.$(tput sgr 0)\n" # red
     exit 1
 fi
 
@@ -50,6 +50,8 @@ sudo cp /tmp/todabu/com.fpira.todabu.plist $HOME/Library/LaunchAgents/com.fpira.
 launchctl load $HOME/Library/LaunchAgents/com.fpira.todabu.plist
 rm -rf /tmp/todabu
 
+sleep 1
+
 # inititalisation
 CONFIG_FILE="$HOME/.config/todabu/config"
 COMPUTER_NAME=""
@@ -65,7 +67,7 @@ echo ""
 echo -n "Insert choosen name for this computer and press [enter]: "
 read COMPUTER_NAME
 
-while [[ $COMPUTER_NAME == "" ]]; do
+while [[ -z ${COMPUTER_NAME} ]]; do
     echo -n "Insert choosen name for this computer and press [enter]: "
     read COMPUTER_NAME
 done
@@ -73,7 +75,7 @@ done
 echo -n "Insert git remote, then press [enter]: "
 read REMOTE
 
-while [[ $REMOTE == "" ]]; do
+while [[ -z $REMOTE ]]; do
     echo -n "Insert git remote (ONLY url), then press [enter]: "
     read REMOTE
 done
@@ -85,4 +87,6 @@ echo "REMOTE=\"$REMOTE\"" >> $CONFIG_FILE
 
 echo ""
 echo "Configuration saved"
-echo "Done. Script will run soon."
+echo ""
+echo "Script will run soon. Bye!"
+echo ""

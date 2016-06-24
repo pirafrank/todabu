@@ -19,8 +19,8 @@
 
 # Script header - Do NOT touch this!
 
-if [[ ! -f $HOME/.config/todabu/config ]];then
-    /usr/bin/osascript -e 'display notification "Error: Configuration not found!." with title "todabu backup"'
+if [[ ! -f $HOME/.config/todabu/config ]]; then
+    /usr/bin/osascript -e 'display notification "Error: Configuration not found!." with title "Todabu Backup"'
     exit 1
 else
     source $HOME/.config/todabu/config
@@ -151,4 +151,4 @@ git commit -m 'commit'
 git push origin master
 
 # notify backup complete
-/usr/bin/osascript -e 'display notification "Backup completed." with title "todabu backup"'
+/usr/bin/osascript -e 'display notification "Backup completed." with title "Todabu Backup"'
