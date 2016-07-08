@@ -19,6 +19,8 @@
 
 # Script header - Do NOT touch this!
 
+SCRIPT_NAME="Todabu Backup"
+
 if [[ ! -f $HOME/.config/todabu/config ]]; then
     /usr/bin/osascript -e 'display notification "Error: Configuration not found!." with title "Todabu Backup"'
     exit 1
@@ -26,24 +28,24 @@ else
     source $HOME/.config/todabu/config
 fi
 
-if [[ ! -d ${BACKUP_DIR} ]]; then
-     mkdir -p ${BACKUP_DIR}
-     cd ${BACKUP_DIR}
+if [[ ! -d "$BACKUP_DIR" ]]; then
+     mkdir -p "$BACKUP_DIR"
+     cd "$BACKUP_DIR"
      git init
      git remote add origin $REMOTE
 else
-    cd ${BACKUP_DIR}
+    cd "$BACKUP_DIR"
 fi
 
-if [[ ! -d ${COMPUTER_NAME} ]]; then
-     mkdir -p ${COMPUTER_NAME}
-     cd ${COMPUTER_NAME}
+if [[ ! -d "$COMPUTER_NAME" ]]; then
+     mkdir -p "$COMPUTER_NAME"
+     cd "$COMPUTER_NAME"
 else
-    cd ${COMPUTER_NAME}
+    cd "$COMPUTER_NAME"
 fi
 
-if [[ ! -d $USER ]]; then
-     mkdir -p $USER
+if [[ ! -d "$USER" ]]; then
+     mkdir -p "$USER"
 fi
 
 ###################################################################################
@@ -93,29 +95,29 @@ gem list > gem_installed.txt
 
 # backing up user configuration files
 echo "backing up bash user config files..."
-cp ${HOME}/.bash_profile ./$USER/.bash_profile
-cp ${HOME}/.bashrc ./$USER/.bashrc
-cp ${HOME}/.profile ./$USER/.profile
+cp $HOME/.bash_profile ./$USER/.bash_profile
+cp $HOME/.bashrc ./$USER/.bashrc
+cp $HOME/.profile ./$USER/.profile
 echo "backing up zsh user config files..."
-cp ${HOME}/.zshrc ./$USER/.zshrc
-cp ${HOME}/.zshenv ./$USER/.zshenv
-cp ${HOME}/.zlogin ./$USER/.zlogin
+cp $HOME/.zshrc ./$USER/.zshrc
+cp $HOME/.zshenv ./$USER/.zshenv
+cp $HOME/.zlogin ./$USER/.zlogin
 
 # backing up vim files and config
 echo "backing up vim config..."
-# cp -r ${HOME}/.vim ./USER/vim
-cp ${HOME}/.vimrc ./$USER/.vimrc
+# cp -r $HOME/.vim ./USER/vim
+cp $HOME/.vimrc ./$USER/.vimrc
 
 # backing up ssh configuration
 echo "backing up ssh configuration..."
 mkdir "$USER/ssh"
-cp ${HOME}/.ssh/config ./$USER/ssh/
-cp ${HOME}/.ssh/known_hosts ./$USER/ssh/known_hosts
+cp $HOME/.ssh/config ./$USER/ssh/config
+cp $HOME/.ssh/known_hosts ./$USER/ssh/known_hosts
 
 # backing up user global git configuration files
 echo "backing up global git configuration..."
-cp ${HOME}/.gitconfig ./$USER/.gitconfig
-cp ${HOME}/.gitignore_global ./$USER/.gitignore_global
+cp $HOME/.gitconfig ./$USER/.gitconfig
+cp $HOME/.gitignore_global ./$USER/.gitignore_global
 
 # backup user settings ~/.config
 echo "backing up user default config..."
@@ -130,19 +132,19 @@ cp /etc/hosts ./etc/hosts
 # backing up sublime text 3 preferences and plugins settings
 echo "backing up sublime text 3 preferences and plugins settings..."
 # rm -rf ./sublime-text-user-installed-packages
-cp -rf "${HOME}/Library/Application Support/Sublime Text 3/Packages/User/" ./sublime-text-user-installed-packages
+cp -rf "$HOME/Library/Application Support/Sublime Text 3/Packages/User/" ./sublime-text-user-installed-packages
 
 # list of installed quicklook plugins
 echo "saving list of QuickLook plugins..."
-ls -l ${HOME}/Library/QuickLook > user_installed_quicklook_plugins.txt
+ls -l "$HOME/Library/QuickLook" > user_installed_quicklook_plugins.txt
 
 # list of fonts installed by the user
 echo "saving list of fonts installed by the user..."
-ls -l ${HOME}/Library/fonts > user_installed_fonts.txt
+ls -l "$HOME/Library/fonts" > user_installed_fonts.txt
 
 # list of installed screen savers
 echo "saving list of installed screensavers..."
-ls -l "${HOME}/Library/Screen Savers" > user_installed_screensavers.txt
+ls -l "$HOME/Library/Screen Savers" > user_installed_screensavers.txt
 
 ###################################################################################
 # Script footer - Do NOT touch this!
@@ -157,7 +159,7 @@ rm ./"sublime-text-user-installed-packages/Package Control.system-ca-bundle"
 rm ./"sublime-text-user-installed-packages/Package Control.user-ca-bundle"
 
 sleep 1
-cd ${BACKUP_DIR}
+cd "$BACKUP_DIR"
 
 # commit
 echo ""
