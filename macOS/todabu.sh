@@ -102,6 +102,8 @@ echo "backing up zsh user config files..."
 cp $HOME/.zshrc ./$USER/.zshrc
 cp $HOME/.zshenv ./$USER/.zshenv
 cp $HOME/.zlogin ./$USER/.zlogin
+echo "backing up oh-my-zsh related stuff..."
+cp $HOME/.zshrc.pre-oh-my-zsh ./$USER/.zshrc.pre-oh-my-zsh
 
 # backing up vim files and config
 echo "backing up vim config..."
