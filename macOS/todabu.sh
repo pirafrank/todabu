@@ -126,6 +126,11 @@ echo "backing up user default config..."
 rm -rf ./$USER/.config
 cp -r ~/.config ./$USER/.config
 
+# backup GPG config
+echo "backing up user GPG config..."
+mkdir ./$USER/gnupg 2>&1
+cp ~/.gnupg/gpg.conf ./$USER/gnupg/gpg.conf
+
 # backing up /etc/hosts
 echo "backing up /etc/hosts file..."
 mkdir ./etc

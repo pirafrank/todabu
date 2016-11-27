@@ -1,6 +1,6 @@
 # todabu
 
-A simple way to backup user configuration files, info and installation status in a git repository.
+A simple way to automatically backup user configuration files, info and installation status in a git repository.
 
 ## Requirements
 
