@@ -62,6 +62,8 @@ ls -l /usr/local/bin/ > installed_usr_local_bin.txt
 # save installed port list (Macports)
 echo "saving installed ports..."
 port installed > installed_ports.txt
+echo "saving requested status of installed ports..."
+port echo requested | cut -d ' ' -f 1 > requested_ports.txt
 
 # save installed pip modules list
 echo "saving globally installed pip modules..."
@@ -69,7 +71,7 @@ echo "Python version is:" > pip_installed.txt
 sleep 1
 python --version >> pip_installed.txt
 sleep 1
-pip list >> pip_installed.txt
+pip list --format=legacy >> pip_installed.txt
 
 # save list of node versions (nvm)
 echo "saving list of nvm-installed node version..."
