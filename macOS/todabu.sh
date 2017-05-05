@@ -107,6 +107,10 @@ cp $HOME/.zlogin ./$USER/.zlogin
 echo "backing up oh-my-zsh related stuff..."
 cp $HOME/.zshrc.pre-oh-my-zsh ./$USER/.zshrc.pre-oh-my-zsh
 
+# backing up pip3 conf file
+mkdir ./$USER/.pip
+cp $HOME/.pip/pip3.conf ./$USER/.pip/pip3.conf
+
 # backing up vim files and config
 echo "backing up vim config..."
 # cp -r $HOME/.vim ./USER/vim
