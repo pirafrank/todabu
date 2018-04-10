@@ -109,7 +109,9 @@ cp $HOME/.zshrc.pre-oh-my-zsh ./$USER/.zshrc.pre-oh-my-zsh
 
 # backing up pip3 conf file
 mkdir ./$USER/.pip
-cp $HOME/.pip/pip3.conf ./$USER/.pip/pip3.conf
+if [[ -f $HOME/.pip/pip3.conf ]]; then
+  cp $HOME/.pip/pip3.conf ./$USER/.pip/pip3.conf
+fi
 
 # backing up vim files and config
 echo "backing up vim config..."
@@ -136,6 +138,7 @@ cp -r ~/.config ./$USER/.config
 echo "backing up user GPG config..."
 mkdir ./$USER/gnupg 2>&1
 cp ~/.gnupg/gpg.conf ./$USER/gnupg/gpg.conf
+cp ~/.gnupg/gpg-agent.conf ./$USER/gnupg/gpg-agent.conf
 
 # backing up /etc/hosts
 echo "backing up /etc/hosts file..."
