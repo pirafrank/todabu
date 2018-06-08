@@ -140,6 +140,11 @@ mkdir ./$USER/gnupg 2>&1
 cp ~/.gnupg/gpg.conf ./$USER/gnupg/gpg.conf
 cp ~/.gnupg/gpg-agent.conf ./$USER/gnupg/gpg-agent.conf
 
+# backing up tmux conf
+echo "backing up tmux config..."
+mkdir ./$USER/tmux 2>&1
+cp ~/.tmux.conf ./$USER/tmux/tmux.conf
+
 # backing up /etc/hosts
 echo "backing up /etc/hosts file..."
 mkdir ./etc
