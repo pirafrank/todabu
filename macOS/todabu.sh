@@ -101,11 +101,9 @@ cp $HOME/.bash_profile ./$USER/.bash_profile
 cp $HOME/.bashrc ./$USER/.bashrc
 cp $HOME/.profile ./$USER/.profile
 echo "backing up zsh user config files..."
-cp $HOME/.zshrc ./$USER/.zshrc
-cp $HOME/.zshenv ./$USER/.zshenv
-cp $HOME/.zlogin ./$USER/.zlogin
-echo "backing up oh-my-zsh related stuff..."
-cp $HOME/.zshrc.pre-oh-my-zsh ./$USER/.zshrc.pre-oh-my-zsh
+cp $HOME/.z* ./$USER/
+#echo "backing up oh-my-zsh related stuff..."
+#cp $HOME/.zshrc.pre-oh-my-zsh ./$USER/.zshrc.pre-oh-my-zsh
 
 # backing up pip3 conf file
 mkdir ./$USER/.pip
